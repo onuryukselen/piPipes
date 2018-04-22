@@ -141,7 +141,7 @@ echo $LIBRARY_TYPE > .LIBRARY_TYPE
 export PDF_DIR=$OUTDIR/pdfs && mkdir -p $PDF_DIR
 READS_DIR=input_read_files && mkdir -p $READS_DIR
 rRNA_DIR=rRNA_mapping && mkdir -p $rRNA_DIR
-GENOMIC_MAPPING_DIR=genome_mapping && mkdir -p $GENOMIC_MAPPING_DIR
+GENOMIC_MAPPING_DIR=genome_mapping && mkdir -p -m 755 $GENOMIC_MAPPING_DIR
 CUFFLINKS_DIR=cufflinks_output && mkdir -p $CUFFLINKS_DIR
 HTSEQ_DIR=htseq_count && mkdir -p $HTSEQ_DIR
 BW_OUTDIR=bigWig && mkdir -p $BW_OUTDIR
@@ -279,7 +279,7 @@ if [[ -n $PE_MODE ]]; then
 		--seedSearchStartLmaxOverLread 1.0 \
 		--chimSegmentMin 0 2>&1 1> $GENOMIC_MAPPING_DIR/${PREFIX}.x_rRNA.${GENOME}.STAR.log && \
 	touch .${JOBUID}.status.${STEP}.genome_mapping
-	[ ! -f .${JOBUID}.status.${STEP}.genome_mapping ] && echo2 "Failed to map to genome" "error"
+#	[ ! -f .${JOBUID}.status.${STEP}.genome_mapping ] && echo2 "Failed to map to genome" "error"
 	STEP=$((STEP+1))
 
 	# getting statistics
