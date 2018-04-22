@@ -263,12 +263,14 @@ dm3)
 
 	if [ -s $IGENOME_DIR_NAME/UCSC/$GENOME/Sequence/WholeGenomeFasta/genome.fa.fai ]; then
 		ln -s $IGENOME_DIR_NAME/UCSC/$GENOME/Sequence/WholeGenomeFasta/genome.fa.fai ${GENOME}.fa.fai
+    elif [ -s ${GENOME}.fa.fai ]; then
 	else
 		samtools faidx ${GENOME}.fa
 	fi
 
 	if [ -s $IGENOME_DIR_NAME/UCSC/$GENOME/Annotation/Genes/ChromInfo.txt ]; then
 		ln -s $IGENOME_DIR_NAME/UCSC/$GENOME/Annotation/Genes/ChromInfo.txt ${GENOME}.ChromInfo.txt
+    elif [ -s ${GENOME}.ChromInfo.txt ]; then
 	else
 		faSize -tab -detailed ${GENOME}.fa > ${GENOME}.ChromInfo.txt
 	fi
